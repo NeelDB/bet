@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "69939864084",
+    "project_id": "better-eat-that-70e93",
+    "storage_bucket": "better-eat-that-70e93.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:69939864084:android:dee08efc449d27ec0e7d01",
+        "android_client_info": {
+          "package_name": "com.example.bet"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBSUWIyjFBVqcsq88X8cjudZt7XNYpm2JQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
