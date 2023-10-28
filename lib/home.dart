@@ -48,7 +48,7 @@ class _HomeState extends State<Home> {
                 //Google Sign in
                 await signInWithGoogle();
                 if(mounted) {
-                  Navigator.push(context, MaterialPageRoute(builder: (context) => const ProfilePage(),));
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => ProfilePage(),));
                 }
               },
               child: Container(
