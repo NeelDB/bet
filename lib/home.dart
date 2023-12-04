@@ -36,45 +36,50 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Google Sign'),
-        centerTitle: true,
-      ),
-      body: Center(
-          child: Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: GestureDetector(
-              onTap: () async {
-                //Google Sign in
-                await signInWithGoogle();
-                if(mounted) {
-                  Navigator.push(context, MaterialPageRoute(builder: (context) => ProfilePage(),));
-                }
-              },
-              child: Container(
-                  width: double.infinity,
-                  height: 45,
-                  decoration: BoxDecoration(
-                      border: Border.all(
-                          color: Colors.grey
-                      ),
-                      borderRadius: BorderRadius.circular(8)
-                  ),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center, children: [
-                      Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                          child: Image.asset('assets/google.png')),
-                      const Text(
-                          'Continue with Google ',
-                          style: TextStyle(
-                            fontSize: 17,
-                          )
-                      )
-                    ],)
+        body: Container(
+        decoration: const BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment(0.00, -1.00),
+            end: Alignment(0, 1),
+            colors: [Color(0xFF72FF80), Color(0xFFC5FFD5), Color(0xFFB6D3FD)],
+          ),
+        ),
+        child: Center(
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: GestureDetector(
+                onTap: () async {
+                  //Google Sign in
+                  await signInWithGoogle();
+                  if(mounted) {
+                    Navigator.push(context, MaterialPageRoute(builder: (context) => ProfilePage(),));
+                  }
+                },
+                child: Container(
+                    width: double.infinity,
+                    height: 45,
+                    decoration: BoxDecoration(
+                        border: Border.all(
+                            color: Colors.grey
+                        ),
+                        borderRadius: BorderRadius.circular(30)
+                    ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center, children: [
+                        Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                            child: Image.asset('assets/google.png')),
+                        const Text(
+                            'Continue with Google ',
+                            style: TextStyle(
+                              fontSize: 17,
+                            )
+                        )
+                      ],)
+                ),
               ),
-            ),
-          )
+            )
+        ),
       )
     );
   }

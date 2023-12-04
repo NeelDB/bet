@@ -24,6 +24,7 @@ class ProfilePage extends StatelessWidget {
             children: [
               TextFormField(
                 decoration: const InputDecoration(labelText: 'Name'),
+                textCapitalization: TextCapitalization.words,
                 validator: (value) {
                   if (value!.isEmpty) {
                     return 'Please enter your name';
@@ -77,6 +78,4 @@ class ProfilePage extends StatelessWidget {
       ),
     );
   }
-
-
 }
