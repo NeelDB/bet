@@ -46,7 +46,7 @@ class _HomeState extends State<Home> {
         ),
         child: Center(
             child: Padding(
-              padding: const EdgeInsets.all(8.0),
+              padding: const EdgeInsets.only(top:450.0),
               child: GestureDetector(
                 onTap: () async {
                   //Google Sign in
@@ -56,26 +56,57 @@ class _HomeState extends State<Home> {
                   }
                 },
                 child: Container(
-                    width: double.infinity,
-                    height: 45,
-                    decoration: BoxDecoration(
-                        border: Border.all(
-                            color: Colors.grey
-                        ),
-                        borderRadius: BorderRadius.circular(30)
+                    width: 326,
+                    height: 60,
+                    padding: const EdgeInsets.all(10),
+                    decoration: ShapeDecoration(
+                      color: const Color(0xFFF9F7FF),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(30),
+                      ),
+                      shadows: const [
+                        BoxShadow(
+                          color: Color(0x26452A7C),
+                          blurRadius: 30,
+                          offset: Offset(0, 30),
+                          spreadRadius: 0,
+                        )
+                      ],
                     ),
                     child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center, children: [
-                        Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                            child: Image.asset('assets/google.png')),
-                        const Text(
-                            'Continue with Google ',
-                            style: TextStyle(
-                              fontSize: 17,
-                            )
-                        )
-                      ],)
+                        mainAxisSize: MainAxisSize.min,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Container(
+                            width: 44,
+                            height: 44,
+                            decoration: const BoxDecoration(
+                              image: DecorationImage(
+                                image: AssetImage("assets/google.png"),
+                                fit: BoxFit.fill,
+                              ),
+                            ),
+                          ),
+                          const SizedBox(width: 10),
+                          const SizedBox(
+                            width: 218,
+                            height: 25,
+                            child: Text(
+                              'Continue with Google',
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                color: Colors.black,
+                                fontSize: 20,
+                                fontFamily: 'Didact Gothic',
+                                fontWeight: FontWeight.w400,
+                                height: 0,
+                                letterSpacing: -0.30,
+                              ),
+                            ),
+                          ),
+                      ],
+                    )
                 ),
               ),
             )
@@ -83,6 +114,4 @@ class _HomeState extends State<Home> {
       )
     );
   }
-
-
 }
