@@ -115,3 +115,24 @@ class _HomeState extends State<Home> {
     );
   }
 }
+
+class BetterEatThatLogo extends StatelessWidget {
+  const BetterEatThatLogo({super.key});
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        Container(
+          width: 392,
+          height: 422,
+          decoration: const BoxDecoration(
+            image: DecorationImage(
+              image: AssetImage("assets/BetterEatThat.png"),
+              fit: BoxFit.fill,
+            ),
+          ),
+        )
+      ],
+    );
+  }
+}
