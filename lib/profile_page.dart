@@ -13,9 +13,54 @@ class ProfilePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('User Data Form'),
-      ),
+      body: Stack(
+        children: [
+          //Background
+          Container(
+            width: double.infinity,
+            height: double.infinity,
+            decoration: const BoxDecoration(
+              gradient: LinearGradient(
+                begin: Alignment(0.00, -1.00),
+                end: Alignment(0, 1),
+                colors: [Color(0xFF72FF80), Color(0xFFC5FFD5), Color(0xFFB6D3FD)],
+              ),
+            ),
+          ),
+          Positioned(
+              bottom: 0,
+              left: 0,
+              right: 0,
+              child: Center(
+                child: Container(
+                  width: 350,
+                  height: 600,
+                  decoration: BoxDecoration(
+                    color: Colors.white, // Set your content layer color here
+                    borderRadius: BorderRadius.circular(10.0),
+                  ),
+                child: UserForm(),
+                ),
+              )
+          )
+        ]
+      )
+    );
+  }
+}
+
+class UserForm extends StatelessWidget {
+  UserForm({super.key});
+
+  final _formKey = GlobalKey<FormState>();
+  String name = '';
+  String sex = '';
+  int age = 0;
+  double height = 0.0;
+  double weight = 0.0;
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
       body: Form(
         key: _formKey,
         child: Padding(
