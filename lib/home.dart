@@ -46,7 +46,7 @@ class BetterEatThatLogo extends StatelessWidget {
     return Column(
         children: [
           Image.asset(
-              'assets/BetterEatThat.png'
+              'assets/images/BetterEatThat.png'
           ),
         ],
       );
@@ -88,7 +88,7 @@ class GoogleSignInButton extends StatelessWidget {
               height: 44,
               decoration: const BoxDecoration(
                 image: DecorationImage(
-                  image: AssetImage("assets/google.png"),
+                  image: AssetImage("assets/images/google.png"),
                   fit: BoxFit.fill,
                 ),
               ),

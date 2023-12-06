@@ -36,7 +36,7 @@ class ProfilePage extends StatelessWidget {
               child: Column(
                 children: [
                   Image.asset(
-                      'assets/BetterEatThat.png',
+                      'assets/images/BetterEatThat.png',
                     width: 100,
                     height: 100,
                   ),
