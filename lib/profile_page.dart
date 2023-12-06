@@ -1,3 +1,4 @@
+import 'package:bet/home.dart';
 import 'package:bet/login.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
@@ -175,11 +176,9 @@ class UserForm extends StatelessWidget {
                 onPressed: () {
                   if (_formKey.currentState!.validate()) {
                     _formKey.currentState?.save();
-                    logout();
                     Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => const Login()));
-// Do something with the collected data (e.g., submit to a server)
+                        MaterialPageRoute(builder: (_)=> const Home()));
                   }
                 },
                 child: const Text('Submit'),
