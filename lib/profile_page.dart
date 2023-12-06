@@ -27,6 +27,24 @@ class ProfilePage extends StatelessWidget {
               ),
             ),
           ),
+          // Logo
+          Positioned(
+            top: 15, // Adjust the top position according to your layout
+            left: 0,
+            right: 0,
+            child: Center(
+              child: Column(
+                children: [
+                  Image.asset(
+                      'assets/BetterEatThat.png',
+                    width: 100,
+                    height: 100,
+                  ),
+                ],
+              ), // Replace YourLogoWidget with your logo widget
+            ),
+          ),
+          // White Layer
           Positioned(
               bottom: 0,
               left: 0,
@@ -67,8 +85,20 @@ class UserForm extends StatelessWidget {
           padding: const EdgeInsets.all(16.0),
           child: Column(
             children: [
+              const Text(
+                'User Form',
+                style: TextStyle(
+                  fontSize: 20,
+                  fontFamily: 'Didact Gothic',
+                  fontWeight: FontWeight.w400,
+                ),
+              ),
+              const SizedBox(height: 20),
               TextFormField(
-                decoration: const InputDecoration(labelText: 'Name'),
+                decoration: const InputDecoration(
+                  labelText: 'Name',
+                  border: OutlineInputBorder(),
+                ),
                 textCapitalization: TextCapitalization.words,
                 validator: (value) {
                   if (value!.isEmpty) {
@@ -80,28 +110,54 @@ class UserForm extends StatelessWidget {
                   name = value!;
                 },
               ),
-              TextFormField(
-                decoration: const InputDecoration(labelText: 'Sex'),
-                onSaved: (value) {
+              const SizedBox(height: 20),
+              DropdownButtonFormField<String>(
+                decoration: const InputDecoration(
+                  labelText: 'Sex',
+                  border: OutlineInputBorder(),
+                ),
+                items: ['Male', 'Female']
+                    .map((String value) => DropdownMenuItem<String>(
+                  value: value,
+                  child: Text(value),
+                ))
+                    .toList(),
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Please select your sex';
+                  }
+                  return null;
+                },
+                onChanged: (value) {
                   sex = value!;
                 },
               ),
+              const SizedBox(height: 20),
               TextFormField(
-                decoration: const InputDecoration(labelText: 'Age'),
+                decoration: const InputDecoration(
+                  labelText: 'Age',
+                  border: OutlineInputBorder()),
                 keyboardType: TextInputType.number,
                 onSaved: (value) {
                   age = int.parse(value!);
                 },
               ),
+              const SizedBox(height: 20),
               TextFormField(
-                decoration: const InputDecoration(labelText: 'Height (cm)'),
+                decoration: const InputDecoration(
+                  labelText: 'Height (cm)',
+                  border: OutlineInputBorder()),
                 keyboardType: TextInputType.number,
                 onSaved: (value) {
                   height = double.parse(value!);
                 },
               ),
+              const SizedBox(height: 20),
               TextFormField(
-                decoration: const InputDecoration(labelText: 'Weight (kg)'),
+                decoration: const InputDecoration(
+                    labelText: 'Weight (kg)',
+                    border: OutlineInputBorder(),
+                ),
                 keyboardType: TextInputType.number,
                 onSaved: (value) {
                   weight = double.parse(value!);
