@@ -3,11 +3,11 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
-class Home extends StatefulWidget {
-  const Home({super.key});
+class Login extends StatefulWidget {
+  const Login({super.key});
 
   @override
-  State<Home> createState() => _HomeState();
+  State<Login> createState() => _LoginState();
 }
 
 class WelcomeText extends StatelessWidget {
@@ -54,12 +54,38 @@ class BetterEatThatLogo extends StatelessWidget {
 }
 
 class GoogleSignInButton extends StatelessWidget {
-  const GoogleSignInButton({Key? key, required this.onPressed}) : super(key: key);
-  final VoidCallback onPressed;
+  const GoogleSignInButton({super.key});
+
+  Future<void> signInWithGoogle() async {
+    //Create an instance of the firebase auth and google sign in
+    FirebaseAuth auth = FirebaseAuth.instance;
+    final GoogleSignIn googleSignIn = GoogleSignIn();
+
+    //Trigger the authentication flow
+    final GoogleSignInAccount? googleUser = await googleSignIn.signIn();
+
+    //Obtain the auth details from the request
+    final GoogleSignInAuthentication? googleAuth = await googleUser?.authentication;
+
+    //Create a new credentials
+    final AuthCredential credential = GoogleAuthProvider.credential(
+      accessToken: googleAuth?.accessToken,
+      idToken: googleAuth?.idToken,
+    );
+
+    //Sign in the user with credentials
+    final UserCredential userCredential = await auth.signInWithCredential(credential);
+  }
+
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: onPressed,
+      onTap: () async {
+        await signInWithGoogle();
+        Navigator.push(
+            context, MaterialPageRoute(builder: (_)=> ProfilePage())
+        );
+      },
       child: Container(
         width: 326,
         height: 60,
@@ -118,28 +144,7 @@ class GoogleSignInButton extends StatelessWidget {
 }
 
 
-class _HomeState extends State<Home> {
-
-  Future<void> signInWithGoogle() async {
-    //Create an instance of the firebase auth and google sign in
-    FirebaseAuth auth = FirebaseAuth.instance;
-    final GoogleSignIn googleSignIn = GoogleSignIn();
-
-    //Trigger the authentication flow
-    final GoogleSignInAccount? googleUser = await googleSignIn.signIn();
-
-    //Obtain the auth details from the request
-    final GoogleSignInAuthentication? googleAuth = await googleUser?.authentication;
-
-    //Create a new credentials
-    final AuthCredential credential = GoogleAuthProvider.credential(
-      accessToken: googleAuth?.accessToken,
-      idToken: googleAuth?.idToken,
-    );
-
-    //Sign in the user with credentials
-    final UserCredential userCredential = await auth.signInWithCredential(credential);
-  }
+class _LoginState extends State<Login> {
 
   @override
   Widget build(BuildContext context) {
@@ -152,25 +157,14 @@ class _HomeState extends State<Home> {
             colors: [Color(0xFF72FF80), Color(0xFFC5FFD5), Color(0xFFB6D3FD)],
           ),
         ),
-        child: Column(
+        child: const Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const WelcomeText(),
-            const BetterEatThatLogo(),
+            WelcomeText(),
+            BetterEatThatLogo(),
             Padding(
-              padding: const EdgeInsets.only(top: 20.0),
-              child: GoogleSignInButton(
-                onPressed: () async {
-                  //Google Sign in
-                  await signInWithGoogle();
-                  if (mounted) {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => ProfilePage()),
-                    );
-                  }
-                },
-              ),
+              padding: EdgeInsets.only(top: 20.0),
+              child: GoogleSignInButton(),
             ),
           ],
         ),

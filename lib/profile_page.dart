@@ -1,4 +1,6 @@
+import 'package:bet/login.dart';
 import 'package:flutter/material.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 
 class ProfilePage extends StatelessWidget {
   ProfilePage({super.key});
@@ -69,6 +71,11 @@ class ProfilePage extends StatelessWidget {
 
 class UserForm extends StatelessWidget {
   UserForm({super.key});
+
+  Future<void> logout() async {
+    final GoogleSignIn googleSign = GoogleSignIn();
+    await googleSign.signOut();
+  }
 
   final _formKey = GlobalKey<FormState>();
   String name = '';
@@ -168,7 +175,11 @@ class UserForm extends StatelessWidget {
                 onPressed: () {
                   if (_formKey.currentState!.validate()) {
                     _formKey.currentState?.save();
-                    // Do something with the collected data (e.g., submit to a server)
+                    logout();
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => const Login()));
+// Do something with the collected data (e.g., submit to a server)
                   }
                 },
                 child: const Text('Submit'),
